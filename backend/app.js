@@ -8,6 +8,9 @@ const { handleNewConnection } = require('./services/socketService');
 const NotificationRoutes = require('./routes/notificationRoutes');
 const Pusher = require('pusher');
 const {initAdmin} = require('./secret/firbaseadmin');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const app = express();
 app.use(cors());

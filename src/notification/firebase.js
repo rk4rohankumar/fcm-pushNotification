@@ -5,15 +5,14 @@ import { getMessaging, getToken } from "firebase/messaging";
 import axios from '../axiosConfig'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBqTQcsGDcSY2f9nIFWYSV3zPMW7XLc7jM",
-    authDomain: "emoha-67fa4.firebaseapp.com",
-    projectId: "emoha-67fa4",
-    storageBucket: "emoha-67fa4.firebasestorage.app",
-    messagingSenderId: "420475888808",
-    appId: "1:420475888808:web:2650b148137a7a94b50e9d",
-    measurementId: "G-Z5T2WB4QX3"
+    apiKey: process.env.REACT_APP_FIREBASE_CONFIG_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_CONFIG_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_CONFIG_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_CONFIG_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_CONFIG_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_CONFIG_APP_ID,
+    measurementId: process.env.REACT_APP_FIREBASE_CONFIG_MEASUREMENT_ID
 }
-
 // Initialize Firebase
 // const analytics = getAnalytics(app);
 const app = initializeApp(firebaseConfig);
@@ -27,7 +26,7 @@ export const requestPermission = async () => {
             const token = await getToken(messaging, {
                 vapidKey: "BEbbPsmf20ZepAiwZgI5egtNw-Xb7-BkWm5BUty6iAJVSCzkyBLB9zCIpnt9K_6O9kPpf2NJssIUxJ1cjyiXGAw",
             })
-            axios.post('/api/notifications/save-token', { token: token }).then(res => console.log(res)).catch(err => console.log(err
+            axios.post('/api/notifications/save-token', { token: token }).then(res => console.log(res.data)).catch(err => console.log(err
             ))
             console.log('Notification token:', token);
 
