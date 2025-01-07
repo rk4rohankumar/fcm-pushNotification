@@ -34,12 +34,10 @@ const pusher = new Pusher({
   
 initAdmin();
   
-mongoose.connect('mongodb+srv://rwpmns:Rohan%40k1@cluster0.oxtmylt.mongodb.net/dataTable');
+mongoose.connect(process.env.MONGODB_URI).then(res=>console.log('Connected to database')).catch(err=>console.log('Error connecting to database:',err));
 
 // Store socket.io instance for routes usage
 app.set('io', io);
-
-// Socket Connection
 io.on('connection', (socket) => {
     console.log('a new user connected,total connections:',++totalusers);
     handleNewConnection(socket);
